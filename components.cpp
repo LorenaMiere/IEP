@@ -12,10 +12,11 @@ price()
 
 Components::~Components() {}
 
+//ITEM 10: return reference from copy assignment operator
 Components& Components::operator=(const Components& copy1) { //copy assignment operator implementation
     nameComp = copy1.nameComp;
     price = copy1.price;
-    return *this;
+    return *this; //to support chaining assignment
 }
 
 Components::Components(const Components& copy2) { //copy constructor implementation
