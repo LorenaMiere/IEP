@@ -35,13 +35,13 @@ class Car{
     components(ca.components)
     {};
 
-    Car& operator=(const Car& ca){
+    Car& operator=(const Car& ca){                                  
         this->registrationNumber=ca.registrationNumber;
         this->yearOfFabrication=ca.yearOfFabrication;
 
-        Components *orig=components;
-        this->components=new Components(*ca.components);
-        delete orig;
+        Components *orig=components;                                  // remember original components
+        this->components=new Components(*ca.components);              //  point components to a copy of ca components
+        delete orig;                                                  // delete the original components
         return *this;
     };
 
@@ -51,23 +51,24 @@ class Car{
 
 };
 
-class Tesla : public Car{
+class Tesla : public Car{                           // a derived class
     private:
         string color;
     public:
-        Tesla(string regNr, int year, Components *c, string col):
+        Tesla(string regNr, int year, Components *c, string col):   
             Car(regNr, year, c),
             color(col)
         {};
-        Tesla(const Tesla& ca):
-            Car(ca),
+        Tesla(const Tesla& ca):                 
+            Car(ca),                            //invoke base class copy constructor
             color(ca.color)
         {};
-        Tesla& operator=(const Tesla& ca){
-            Car::operator=(ca);
+        Tesla& operator=(const Tesla& ca){      // return type is a reference to
+{                                               // the current class
+            Car::operator=(ca);                 // assign base class parts 
             color=ca.color;
 
-            return *this;
+            return *this;                       // return the left-hand object
         }
         void toString(){
             Car::toString();
@@ -95,7 +96,7 @@ int main(){
     c3.toString();
 
     Car c4("TM-30-KLO",2019,c2);
-    (car2=c4)=car1;
+    (car2=c4)=car1;                             // chain of assignments
 
       cout<<endl<<"Car 1 assignment operator: ";
     car1.toString();
