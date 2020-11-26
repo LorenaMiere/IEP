@@ -64,7 +64,7 @@ class Tesla : public Car{                           // a derived class
             color(ca.color)
         {};
         Tesla& operator=(const Tesla& ca){      // return type is a reference to
-{                                               // the current class
+                                                // the current class
             Car::operator=(ca);                 // assign base class parts 
             color=ca.color;
 
