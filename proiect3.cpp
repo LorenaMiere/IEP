@@ -50,7 +50,7 @@ Car* createCar(string &x, int &y){
     return new Car(x, y);
 }
 
-static void cleanup(Car *ca){  
+static void deleteCar(Car *ca){  
     ca->~Car();
     cout<<"The car "<<ca->getRegistrationNumber()<<" has been deleted\n";
 }
@@ -62,7 +62,7 @@ int main(){
     cin>>x;
     cout<<"Enter year of fabrication: ";
     cin>>y;
-    shared_ptr<Car> r1(createCar(x,y),cleanup);
+    shared_ptr<Car> r1(createCar(x,y),deleteCar);
     shared_ptr<Car> r2;
     auto_ptr<Car> r3(createCar(x,y));
     auto_ptr<Car> r4;
